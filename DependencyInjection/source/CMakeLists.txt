@@ -1,0 +1,5 @@
+add_executable(DependencyInjection DependencyInjection.cpp DiscreteFunction.cpp)
+target_include_directories(DependencyInjection PUBLIC ${CMAKE_SOURCE_DIR}/include)
+
+target_compile_features(DependencyInjection PUBLIC cxx_std_17)
+set_target_properties(DependencyInjection PROPERTIES CXX_STANDARD_REQUIRED ON CXX_EXTENSIONS OFF)
