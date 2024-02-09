@@ -1,7 +1,7 @@
 #include "DiscreteFunction.h"
 #include <stdexcept>
 
-DiscreteFunction::DiscreteFunction(std::vector<double> y, double x_min, double x_max, std::unique_ptr<TrapeziumIntegrator> &integrator_ref) : max_x(x_max), min_x(x_min)
+DiscreteFunction::DiscreteFunction(std::vector<double> y, double x_min, double x_max, std::unique_ptr<Integrator> &integrator_ref) : max_x(x_max), min_x(x_min)
 {
     if(y.size() < 3)
     {
@@ -25,7 +25,7 @@ double DiscreteFunction::integrate()
     return integrator->integrate(delta_x, ys);
 }
 
-void DiscreteFunction::setIntegrator(std::unique_ptr<TrapeziumIntegrator> &integrator_ref)
+void DiscreteFunction::setIntegrator(std::unique_ptr<Integrator> &integrator_ref)
 {
     integrator = std::move(integrator_ref);
 }
