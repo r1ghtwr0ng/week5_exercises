@@ -10,8 +10,11 @@ int main()
     {
         double x = delta_x * i;
         ys[i] = x*x;
-    }   
-    DiscreteFunction DF(ys, 0, 1);
+    }
+    std::unique_ptr<TrapeziumIntegrator> integrator = std::make_unique<TrapeziumIntegrator>();
+    DiscreteFunction DF(ys, 0, 1, integrator);
+    std::unique_ptr<TrapeziumIntegrator> integrator2 = std::make_unique<TrapeziumIntegrator>();
+    DF.setIntegrator(integrator2);
 
     std::cout << DF.integrate() << std::endl;
 
