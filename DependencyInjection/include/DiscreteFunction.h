@@ -29,6 +29,7 @@ class DiscreteFunction
 {
     public:
     DiscreteFunction(std::vector<double> y, double x_min, double x_max, std::unique_ptr<Integrator> &integrator);
+    DiscreteFunction(std::vector<double> y, double x_min, double x_max);
 
     void setIntegrator(std::unique_ptr<Integrator> &integrator_ref);
 

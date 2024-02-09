@@ -11,15 +11,18 @@ int main()
         double x = delta_x * i;
         ys[i] = x*x;
     }
-    // Use Trapezium integrator
-    std::unique_ptr<Integrator> t_integr = std::make_unique<TrapeziumIntegrator>();
-    DiscreteFunction DF(ys, 0, 1, t_integr);
-    std::cout << DF.integrate() << std::endl;
+    // Create instance
+    DiscreteFunction DF(ys, 0, 1);
 
-    // Use Simpson integrator
+    // Compare integrators
+    std::unique_ptr<Integrator> t_integr = std::make_unique<TrapeziumIntegrator>();
     std::unique_ptr<Integrator> s_integr = std::make_unique<SimpsonIntegrator>();
+    DF.setIntegrator(t_integr);
+    double t_result = DF.integrate();
     DF.setIntegrator(s_integr);
-    std::cout << DF.integrate() << std::endl;
+    double s_result = DF.integrate();
+
+    std::cout << "[i] Trapezium result: " << t_result << "\n[i] Simpson result: " << s_result << std::endl;
 
     return 0;
 }
